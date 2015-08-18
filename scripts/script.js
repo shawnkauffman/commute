@@ -1,4 +1,4 @@
-var calcCost = function  (costOfGas, vehicleMPG, numMiles) {
+function calcCost(costOfGas, vehicleMPG, numMiles) {
   var dailyCost = (costOfGas / vehicleMPG) * (numMiles * 2);
   var weeklyCost = dailyCost * 5;
   var monthlyCost = weeklyCost * 4;
@@ -10,31 +10,36 @@ var calcCost = function  (costOfGas, vehicleMPG, numMiles) {
   };
 }
 
-document.forms[0].onsubmit = function(e) {
+var form = document.forms[0];
+
+form.onsubmit = function(e) {
   e.preventDefault();
 
-  if (document.forms[0].costOfGas.value == '' || 
-    document.forms[0].vehicleMPG.value == '' ||
-    document.forms[0].numMiles.value == '') {
+  if (form.costOfGas.value == '' || 
+    form.vehicleMPG.value == '' ||
+    form.numMiles.value == '') 
+  {
     return;
-  } else {
-    var userCostOfGas =  +document.forms[0].costOfGas.value;
-    var userMPG =  +document.forms[0].vehicleMPG.value;
-    var userNumMiles =  +document.forms[0].numMiles.value;
-    document.forms[0].costOfGas.value = "";
-    document.forms[0].vehicleMPG.value = "";
-    document.forms[0].numMiles.value = "";
+  } 
+  else 
+  {
+    var userCostOfGas = +form.costOfGas.value;
+    var userMPG = +form.vehicleMPG.value;
+    var userNumMiles = +form.numMiles.value;
+  
+    form.costOfGas.value = '';
+    form.vehicleMPG.value = '';
+    form.numMiles.value = '';
 
     var costs = calcCost(userCostOfGas, userMPG, userNumMiles);
-    var calculatedMonthlyCost = document.getElementById("calculatedDailyCost");
-    var calculatedMonthlyCost = document.getElementById("calculatedWeeklyCost");
-    var calculatedMonthlyCost = document.getElementById("calculatedMonthlyCost");
-    
-    var inputReturned = document.getElementById("inputReturned");
-    inputReturned.innerHTML = "For a car that gets " + userMPG + " MPG, driving " + userNumMiles + " miles to work each day at $" + userCostOfGas + "/gal:";
 
-    calculatedDailyCost.innerHTML = "You're spending $" + parseInt(costs.dailyCost, 10) + " on gas every day.";
-    calculatedWeeklyCost.innerHTML = "You're spending $" + parseInt(costs.weeklyCost, 10) + " on gas every week.";
-    calculatedMonthlyCost.innerHTML = "You're spending $" + parseInt(costs.monthlyCost, 10) + " on gas each month.";
+    var inputReturned = document.getElementById("inputReturned");
+    inputReturned.innerHTML = "For a car that gets " + userMPG + 
+    " MPG, driving " + userNumMiles + " miles to work each day at $" + 
+    userCostOfGas.toFixed(2) + "/gal:";
+
+    calculatedDailyCost.innerHTML = "You're spending $" + costs.dailyCost.toFixed(2) + " on gas every day.";
+    calculatedWeeklyCost.innerHTML = "You're spending $" + costs.weeklyCost.toFixed(2) + " on gas every week.";
+    calculatedMonthlyCost.innerHTML = "You're spending $" + costs.monthlyCost.toFixed(2) + " on gas each month.";
   }
 };
