@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<title>Commute</title>
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <h3>Calculate the cost of your daily commute</h3>
+  <br><br>
+  <form>
+    <div>
+      <label for="costOfGas">Cost of Gas:</label> <input type="text" placeholder="ex: 3.10" name="costOfGas"/>
+    </div>
+    <div>
+      <label for="vehicleMPG">Vehicle MPG:</label> <input type="text" placeholder="ex: 30" name="vehicleMPG"/>
+    </div>
+    <div>
+      <label for="numMiles">How many miles do you drive to work (one-way):</label> <input type="text" placeholder="ex: 10" name="numMiles"/>
+    </div>
+    <input type="submit" value="Submit">
+  </form>
+  <br><br>
+  <div id="inputReturned"></div>
+  <div class="calculations">
+    <div id="calculatedDailyCost"></div>
+    <div id="calculatedWeeklyCost"></div>
+    <div id="calculatedMonthlyCost"></div>
+  </div>
+
+  <script src="scripts/script.js"></script>
+</body>
+</html>
